@@ -3,7 +3,6 @@
 <form action="action_sunami.php" method="POST">
 	<fieldset>
 	<legend>Input :</legend>
-<<<<<<< HEAD
 	<input type="radio" name="continent" value="all">All
 	<input type="radio" name="continent" value="africa">Africa
 	<input type="radio" name="continent" value="antarctica">Antarctica
@@ -14,9 +13,6 @@
 	<input type="radio" name="continent" value="south">South-Amarica
 	<br>
 	Magnitude value: 
-=======
-	Magnitude value:
->>>>>>> FETCH_HEAD
 	<input type="text" name="magnitude">
 	<br>
 	Latitude value:
