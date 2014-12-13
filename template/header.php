@@ -19,8 +19,11 @@
         background-color:#2c3e50;
         text-transform:uppercase;
         text-align:justify;
-        border-radius:5;
+        border-radius:5px;
         overflow:hidden;
+      }
+      .nav-justified > li > a:hover{
+        background-color:#f1c40f;
       }
       .nav-justified > li > a{
         color:white;
