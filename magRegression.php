@@ -1,4 +1,4 @@
-<?php include_once "template/header.inc.php" ?>
+<?php include_once "template/header.php" ?>
 
 <?php 
 	$dmin=($_POST["dmin"]-0.277)/1.002;
@@ -10,4 +10,4 @@
 ?>
 
 
-<?php include_once "template/footer.inc.php" ?>
+<?php include_once "template/footer.php" ?>

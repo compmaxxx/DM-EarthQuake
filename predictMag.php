@@ -1,4 +1,4 @@
-<?php include_once "template/header.inc.php" ?>
+<?php include_once "template/header.php" ?>
 PREDICT MAGNITUDE BY REGRESSION
 <!--dmin = [0,44.507], gap = [10,356.4]-->
 
@@ -11,4 +11,4 @@ PREDICT MAGNITUDE BY REGRESSION
 </form>
 
 
-<?php include_once "template/footer.inc.php" ?>
+<?php include_once "template/footer.php" ?>
