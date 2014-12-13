@@ -1,19 +1,19 @@
-<?php include_once "template/header.inc.php" ?>
+<?php include_once "template/header.php" ?>
 
 <form action="action_sunami.php" method="POST">
 	<fieldset>
 	<legend>Input :</legend>
-	Magnitude value: 
+	Magnitude value:
 	<input type="text" name="magnitude">
 	<br>
-	Latitude value: 
+	Latitude value:
 	<input type="text" name="latitude">
 	<br>
-	Longtitude value: 
+	Longtitude value:
 	<input type="text" name="longtitude">
 	<br><br>
 	<input type="submit" value="Submit">
 	</fieldset>
 </form>
 
-<?php include_once "template/footer.inc.php" ?>
+<?php include_once "template/footer.php" ?>

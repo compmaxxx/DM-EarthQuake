@@ -1,4 +1,4 @@
-<?php include_once "template/header.inc.php" ?>
+<?php include_once "template/header.php" ?>
 
 <?php
 	$input_mag = $_POST["magnitude"];
@@ -25,4 +25,4 @@ TEST KiE
 	//$sum = $sum + ($input_mag * $mag) + ($input_lat * $lat) + ($input_lng * $lng) + $oth;
 ?>
 
-<?php include_once "template/footer.inc.php" ?>
+<?php include_once "template/footer.php" ?>
