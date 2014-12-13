@@ -7,10 +7,10 @@
 	$input_lng = $_POST["longtitude"];
 
 	//array: all, africa, antarctica, asia, europe, north, oceanic, south
-	$mag = array(0.123,0,0.994,0.206,0,0.139,0.564,0);
-	$lat = array(0.029,0,0,0,0,0.016,0.200,0);
-	$lng = array(-0.042,0,0,0,0,0,-0.084,0);
-	$oth = array(-0.047,0,-0.174,-0.054,0,-0.045,-0.373,0);
+	$mag = array(0.017,0,0.178,0.025,0,0.014,0.080,0);
+	$lat = array(0.003,0,0,0,0,0.003,0.042,0);
+	$lng = array(-0.007,0,0,0,0,0,-0.033,0);
+	$oth = array(0.004,0,0.034,0.006,0,0.003,0.025,0);
 
 	$sum = 0;
 	$i = 0;
@@ -24,8 +24,8 @@
 	$sd_lng = array(58.913,1,4.626,29.546,1,33.404,142.013,1);
 	$mean_lng = array(-113.013,0,-28.153,108.464,0,-123.705,0.353,0);
 
-	$max = array(0.081);
-	$min = array(-0.033)
+	$max = array(0.081,1,0.247,0.153,1,0.087,0.241,1);
+	$min = array(-0.033,0,-0.174,-0.037,0,-0.036,-0.206,0);
 ?>
 
 Result: Linear-Regession
@@ -60,24 +60,28 @@ Result: Linear-Regession
 <br>
 <?php echo "continent: $input_ctn"; ?>
 <br><br>
+
 <?php echo "mag: $input_mag"; ?>
 <br>
 <?php 
 	$nor_mag = ($input_mag - $mean_mag[$i]) / $sd_mag[$i];
 	echo "nor_mag: $nor_mag"; ?>
 <br><br>
+
 <?php echo "lat: $input_lat"; ?>
 <br>
 <?php 
 	$nor_lat = ($input_lat - $mean_lat[$i]) / $sd_lat[$i];
 	echo "nor_lat: $nor_lat"; ?>
 <br><br>
+
 <?php echo "lng: $input_lng"; ?>
 <br>
 <?php 
 	$nor_lng = ($input_lng - $mean_lng[$i]) / $sd_lng[$i];
 	echo "nor_lng: $nor_lng"; ?>
 <br><br>
+
 <?php
 	$sum = ($nor_mag * $mag[$i]) + ($nor_lat * $lat[$i]) + ($nor_lng * $lng[$i]) + $oth[$i];
 	echo "regession: $sum";
@@ -94,6 +98,11 @@ Result: Linear-Regession
 		$nor_sum = ($sum - $min[$i]) / ($max[$i] - $min[$i]);
 	}
 	echo "nor_regession: $nor_sum";
+?>
+<br>
+<?php
+	echo "%_regession: ";
+	echo($nor_sum*100);
 ?>
 
 <?php include_once "template/footer.php" ?>

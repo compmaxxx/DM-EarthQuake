@@ -3,6 +3,7 @@
 <form action="action_sunami.php" method="POST">
 	<fieldset>
 	<legend>Input :</legend>
+	Continent: 
 	<input type="radio" name="continent" value="all">All
 	<input type="radio" name="continent" value="africa">Africa
 	<input type="radio" name="continent" value="antarctica">Antarctica
