@@ -1,10 +1,6 @@
-<?php include_once "template/header.inc.php" ?>
+<?php include_once "template/header.php" ?>
 
 <style>
-
-body {
-  font: 10px sans-serif;
-}
 
 .axis path,
 .axis line {
@@ -54,9 +50,8 @@ body {
   left: 0;
 }
 </style>
-<body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+<script src="asset/d3/d3.tip.js"></script>
 <script>
 
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
@@ -84,7 +79,7 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Count:</strong> <span style='color:red'>" + d.Count + "</span>";
+    return "<strong>Number:</strong> <span style='color:red'>" + d.Number + "</span>";
   })
 
 var svg = d3.select("body").append("svg")
@@ -95,9 +90,9 @@ var svg = d3.select("body").append("svg")
 
 svg.call(tip);
 
-d3.tsv("data/data.tsv", type, function(error, data) {
+d3.tsv("data/frequency/all.tsv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.Month; }));
-  y.domain([0, d3.max(data, function(d) { return d.Count; })]);
+  y.domain([0, d3.max(data, function(d) { return d.Number; })]);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -112,7 +107,7 @@ d3.tsv("data/data.tsv", type, function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Count");
+      .text("Number");
 
   svg.selectAll(".bar")
       .data(data)
@@ -120,15 +115,15 @@ d3.tsv("data/data.tsv", type, function(error, data) {
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.Month); })
       .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.Count); })
-      .attr("height", function(d) { return height - y(d.Count); })
+      .attr("y", function(d) { return y(d.Number); })
+      .attr("height", function(d) { return height - y(d.Number); })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
 
 });
 
 function type(d) {
-  d.Count = +d.Count;
+  d.Number = +d.Number;
   return d;
 }
 
@@ -136,4 +131,4 @@ function type(d) {
 
 
 
-<?php include_once "template/footer.inc.php" ?>
+<?php include_once "template/footer.php" ?>

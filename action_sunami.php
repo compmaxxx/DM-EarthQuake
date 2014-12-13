@@ -1,4 +1,4 @@
-<?php include_once "template/header.inc.php" ?>
+<?php include_once "template/header.php" ?>
 
 <?php
 	$input_mag = $_POST["magnitude"];
@@ -51,4 +51,4 @@ TEST KiE
 	echo "regession: $sum";
 ?>
 
-<?php include_once "template/footer.inc.php" ?>
+<?php include_once "template/footer.php" ?>
