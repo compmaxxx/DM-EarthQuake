@@ -1,5 +1,5 @@
 <?php
-  $pages = array("frequency"=>"Frequency","sunami"=>"Tsunami");
+  $pages = array("index"=>"home","frequency"=>"Frequency","sunami"=>"Tsunami");
   $active = array();
   foreach($pages as $name=>$short)
   {
