@@ -1,4 +1,4 @@
-<?php include_once "template/header.inc.php" ?>
+<?php include_once "template/header.php" ?>
 
 <style>
 
@@ -136,4 +136,4 @@ function type(d) {
 
 
 
-<?php include_once "template/footer.inc.php" ?>
+<?php include_once "template/footer.php" ?>
