@@ -51,7 +51,7 @@
 }
 </style>
 
-<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script src="asset/d3/d3.tip.js"></script>
 <script>
 
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
@@ -90,7 +90,7 @@ var svg = d3.select("body").append("svg")
 
 svg.call(tip);
 
-d3.tsv("data/data.tsv", type, function(error, data) {
+d3.tsv("data/frequency/all.tsv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.Month; }));
   y.domain([0, d3.max(data, function(d) { return d.Number; })]);
 
