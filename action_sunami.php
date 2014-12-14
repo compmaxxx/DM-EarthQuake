@@ -14,7 +14,7 @@
 
 	$sum = 0;
 	$i = 0;
-	
+
 	$sd_mag = array(1.155,1,0.465,0.442,1,0.834,0.963,1);
 	$mean_mag = array(1.669,0,5.144,4.736,0,1.451,4.593,0);
 
@@ -63,21 +63,21 @@ Result: Linear-Regession
 
 <?php echo "mag: $input_mag"; ?>
 <br>
-<?php 
+<?php
 	$nor_mag = ($input_mag - $mean_mag[$i]) / $sd_mag[$i];
 	echo "nor_mag: $nor_mag"; ?>
 <br><br>
 
 <?php echo "lat: $input_lat"; ?>
 <br>
-<?php 
+<?php
 	$nor_lat = ($input_lat - $mean_lat[$i]) / $sd_lat[$i];
 	echo "nor_lat: $nor_lat"; ?>
 <br><br>
 
 <?php echo "lng: $input_lng"; ?>
 <br>
-<?php 
+<?php
 	$nor_lng = ($input_lng - $mean_lng[$i]) / $sd_lng[$i];
 	echo "nor_lng: $nor_lng"; ?>
 <br><br>
