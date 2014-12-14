@@ -4,7 +4,7 @@
 	<fieldset>
 	<legend>Input :</legend>
 	Continent: 
-	<input type="radio" name="continent" value="all">All
+	<input type="radio" name="continent" value="all" checked>All
 	<input type="radio" name="continent" value="africa">Africa
 	<input type="radio" name="continent" value="antarctica">Antarctica
 	<input type="radio" name="continent" value="asia">Asia
