@@ -1,5 +1,6 @@
 <?php include_once "template/header.php" ?>
 
+
 <style>
 
 .axis path,
@@ -17,9 +18,6 @@
   fill: orangered ;
 }
 
-.x.axis path {
-  display: none;
-}
 
 .d3-tip {
   line-height: 1;
@@ -49,16 +47,27 @@
   top: 100%;
   left: 0;
 }
+
+.show {
+    margin-top: 40;
+}
 </style>
 
+
+<div class="show">
+<h2><center>กราฟแสดงปริมาณการเกิดแผ่นดินไหวทั่วโลก</center> <br> <center>โดยแบ่งตามเดือน</center></h2>
+<div class="row">
+  <div id="histogram" class= "center-block text-center">
+
+  </div>
+</div>
 <script src="asset/d3/d3.tip.js"></script>
 <script>
 
-var margin = {top: 40, right: 20, bottom: 30, left: 40},
+var margin = {top: 40, right: 30, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-//var formatPercent = d3.format(".0%");
 
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], .1);
@@ -73,7 +82,6 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-   // .tickFormat(formatPercent);
 
 var tip = d3.tip()
   .attr('class', 'd3-tip')
@@ -82,7 +90,7 @@ var tip = d3.tip()
     return "<strong>Number:</strong> <span style='color:red'>" + d.Number + "</span>";
   })
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#histogram").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -128,6 +136,7 @@ function type(d) {
 }
 
 </script>
+</div>
 
 
 
