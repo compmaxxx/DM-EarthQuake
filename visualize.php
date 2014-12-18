@@ -13,7 +13,7 @@
   }
 
   path {
-    fill: #46e11c;
+    fill: #1b85e3;
     stroke: #fff;
   }
 
@@ -26,8 +26,13 @@
 
 <script>
 
+  var rad = 3;
   var feature;
   var quakes;
+  var cont = "<?=$_GET["cont"]?>";
+  if(cont.length==0){
+    cont = "asia";
+  }
 
   var projection = d3.geo.azimuthal()
   .scale(380)
@@ -113,23 +118,19 @@
           return projection([d.long,d.lat])[1];
         })
         .attr("r", function(d) {
-          return 5;
+          return rad;
         });
         refresh();
       }
 
       function ajaxHelper(data) {
         qCXNs.features = data;
-        // if (qCXNs === null) {
-        //   qCXNs = data;
-        // } else {
-        //   qCXNs.push(data);
-        // }
+        console.log(data);
         processQuakes(qCXNs);
 
       }
 
-      d3.csv("data/station/sample.csv", function(data) {
+      d3.csv("data/visual/"+cont+".csv", function(data) {
         ajaxHelper(data);
       });
 
@@ -204,7 +205,7 @@
         },
         "r": function(d) {
           if (updateQuake(d)[2] === 1) {
-            return 5;
+            return rad;
           } else {
             return 0;
           }
@@ -221,7 +222,7 @@
         },
         "r": function(d) {
           if (updateQuake(d)[2] === 1) {
-            return 5;
+            return rad;
           } else {
             return 0;
           }
