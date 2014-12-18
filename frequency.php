@@ -31,6 +31,9 @@ rect:hover {  fill:blue; }
     align:right;
     width:50px;
 }
+#dashboard{
+    text-align: center;
+}
 
 </style>
 <body>
