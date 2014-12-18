@@ -38,7 +38,7 @@ svg text.percent{
 
 	$sum = 0;
 	$i = 0;
-	
+
 	$sd_mag = array(1.155,1,0.465,0.442,1,0.834,0.963,1);
 	$mean_mag = array(1.669,0,5.144,4.736,0,1.451,4.593,0);
 
@@ -88,7 +88,9 @@ Result: Linear-Regession
 	$nor_lat = ($input_lat - $mean_lat[$i]) / $sd_lat[$i];
 	echo "nor_lat: $nor_lat"; ?>
 <br><br><?php echo "lng: $input_lng"; ?>
-<br><?php 
+<br>
+
+<?php
 	$nor_lng = ($input_lng - $mean_lng[$i]) / $sd_lng[$i];
 	echo "nor_lng: $nor_lng"; ?>
 <br><br><?php
@@ -105,11 +107,6 @@ Result: Linear-Regession
 		$nor_sum = ($sum - $min[$i]) / ($max[$i] - $min[$i]);
 	}
 	echo "nor_regession: $nor_sum"; ?>
-<!--
-<br><?php
-	echo "%_regession: ";
-	echo($nor_sum*100); ?>
--->
 
 <!-- configure for pass data from PHP to JS -->
 <br><br><?php 

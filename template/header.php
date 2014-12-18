@@ -1,5 +1,5 @@
 <?php
-  $pages = array("index"=>"home","frequency"=>"Frequency","sunami"=>"Tsunami");
+  $pages = array("index"=>"home","frequency"=>"Frequency","sunami"=>"Tsunami","predictMag"=>"Magnitude");
   $active = array();
   foreach($pages as $name=>$short)
   {
@@ -33,15 +33,15 @@
 
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="page-header">
-        <h1>ProjectName</h1>
+        <h1>EarthQuake</h1>
       </div>
-      <ul class="nav nav-tabs nav-justified">
+      <ul class="nav nav-tabs nav-justified" style="margin-bottom:20px">
         <? foreach($pages as $name=>$short){  ?>
           <li <? if($active[$name]) { ?>  class="active"  <? } ?>>
             <a href="<?=$name?>.php"><?=$short?></a></li>
             <? } ?>
       </ul>
-      </div>
     </div>
+    <div class="container">
