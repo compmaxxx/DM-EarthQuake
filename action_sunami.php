@@ -1,10 +1,7 @@
 <?php include_once "template/header.php" ?>
 
 <style>
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  position: relative;
-}
+
 path.slice{
 	stroke-width:2px;
 }
@@ -110,21 +107,34 @@ svg text.percent{
 
 <center>
 <h2>การทำนายผลการเกิดสึนามิ จากเหตุการณ์การเกิดแผ่นดินไหว</h2><br>
-<h4>จากการคำนวณ Linear Regession สามารถแสดงผลในรูป % ของการเกิด sunami จากเหตุการณ์แผ่นดินไหวได้ดังนี้</h4>
+<h4>จากการคำนวณ Linear Regession สามารถแสดงผลในรูปเปอร์เซ็นต์ของการเกิดสึนามิ จากเหตุการณ์การเกิดแผ่นดินไหวได้ดังนี้</h4>
 </center>
 
+<div style='text-align:right'>
+<p>โดย</p>
+<p style="color:#3366CC">- สีน้ำเงิน : ไม่มีโอกาสเกิด sunami</p>
+<p style="color:#DC3912">- สีแดง : มีโอกาสเกิด sunami</p>
+</div>
+
+<div style="text-align:center;">
+	<div id="body">
+
+	</div>
+</div>
+
 <script src="asset/d3/Donut3D.js"></script>
-<script>
+<script style='align:center'>
 var salesData=[
 	{label:"Basic", color:"#3366CC", text:"no-tsunami", value:<?php echo $bValue; ?>},
 	{label:"Plus", color:"#DC3912", text:"tsunami", value:<?php echo $pValue; ?>}
 	];
 
-var svg = d3.select("body").append("svg").attr("width",700).attr("height",300);
+var svg = d3.select("#body").append("svg").attr("width",400).attr("height",300);
 
 svg.append("g").attr("id","salesDonut");
 
-Donut3D.draw("salesDonut", Data(), 150, 150, 130, 100, 30, 0.4);
+Donut3D.draw("salesDonut", Data(), 200, 120, 150, 110, 30, 0.4);
+//Donut3D.draw("salesDonut", Data(), 250, 120, 130, 100, 30, 0.4);
 
 function Data(){
 	return salesData.map(function(d){ 
@@ -133,8 +143,5 @@ function Data(){
 }
 </script>
 
-<p>โดย</p>
-<p>- สีน้ำเงิน : ไม่มีโอกาสเกิด sunami</p>
-<p>- สีแดง : มีโอกาสเกิด sunami</p>
 
 <?php include_once "template/footer.php" ?>
