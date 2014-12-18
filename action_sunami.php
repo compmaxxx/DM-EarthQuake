@@ -1,12 +1,7 @@
 <?php include_once "template/header.php" ?>
 
 <style>
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 960px;
-  height: 500px;
-  position: relative;
-}
+
 path.slice{
 	stroke-width:2px;
 }
@@ -23,7 +18,7 @@ svg text.percent{
 }
 </style>
 
-<!-- compute INPUT for SunamiValue -->
+<!-- compute INPUT for TsunamiValue -->
 <?php
 	$input_ctn = $_POST["continent"];
 	$input_mag = $_POST["magnitude"];
@@ -77,26 +72,14 @@ svg text.percent{
 	}
 ?>
 
-Result: Linear-Regession
-<br><?php echo "continent: $input_ctn"; ?>
-<br><br><?php echo "mag: $input_mag"; ?>
-<br><?php 
+<?php 
 	$nor_mag = ($input_mag - $mean_mag[$i]) / $sd_mag[$i];
-	echo "nor_mag: $nor_mag"; ?>
-<br><br><?php echo "lat: $input_lat"; ?>
-<br><?php 
 	$nor_lat = ($input_lat - $mean_lat[$i]) / $sd_lat[$i];
-	echo "nor_lat: $nor_lat"; ?>
-<br><br><?php echo "lng: $input_lng"; ?>
-<br>
+	$nor_lng = ($input_lng - $mean_lng[$i]) / $sd_lng[$i];
+	$sum = ($nor_mag * $mag[$i]) + ($nor_lat * $lat[$i]) + ($nor_lng * $lng[$i]) + $oth[$i];
+?>
 
 <?php
-	$nor_lng = ($input_lng - $mean_lng[$i]) / $sd_lng[$i];
-	echo "nor_lng: $nor_lng"; ?>
-<br><br><?php
-	$sum = ($nor_mag * $mag[$i]) + ($nor_lat * $lat[$i]) + ($nor_lng * $lng[$i]) + $oth[$i];
-	echo "regession: $sum"; ?>
-<br><?php
 	if ($sum < $min[$i]) {
 		$nor_sum = 0;
 	}
@@ -106,10 +89,10 @@ Result: Linear-Regession
 	else {
 		$nor_sum = ($sum - $min[$i]) / ($max[$i] - $min[$i]);
 	}
-	echo "nor_regession: $nor_sum"; ?>
+?>
 
 <!-- configure for pass data from PHP to JS -->
-<br><br><?php 
+<?php 
 	$bValue = 0;
 	$pValue = 1;
 	if ($nor_sum < 0.5) { 
@@ -119,25 +102,39 @@ Result: Linear-Regession
 	else { 
 		$bValue = 1-$nor_sum;
 		$pValue = $nor_sum;
-	} ?>
+	} 
+?>
 
-จากการคำนวณ Linear Regession สามารถแสดงผลในรูป % ของการเกิด sunami จากเหตุการร์แผ่นดินไหวได้ดังนี้<br>
-โดย	<br>
-- สีน้ำเงิน : ไม่มีโอกาสเกิด sunami <br>
-- สีแดง : มีโอกาสเกิด sunami <br>
+<center>
+<h2>การทำนายผลการเกิดสึนามิ จากเหตุการณ์การเกิดแผ่นดินไหว</h2><br>
+<h4>จากการคำนวณ Linear Regession สามารถแสดงผลในรูปเปอร์เซ็นต์ของการเกิดสึนามิ จากเหตุการณ์การเกิดแผ่นดินไหวได้ดังนี้</h4>
+</center>
+
+<div style='text-align:right'>
+<p>โดย</p>
+<p style="color:#3366CC">- สีน้ำเงิน : ไม่มีโอกาสเกิด sunami</p>
+<p style="color:#DC3912">- สีแดง : มีโอกาสเกิด sunami</p>
+</div>
+
+<div style="text-align:center;">
+	<div id="body">
+
+	</div>
+</div>
 
 <script src="asset/d3/Donut3D.js"></script>
-<script>
+<script style='align:center'>
 var salesData=[
-	{label:"Basic", color:"#3366CC", text:"no-sunami", value:<?php echo $bValue; ?>},
-	{label:"Plus", color:"#DC3912", text:"sunami", value:<?php echo $pValue; ?>}
+	{label:"Basic", color:"#3366CC", text:"no-tsunami", value:<?php echo $bValue; ?>},
+	{label:"Plus", color:"#DC3912", text:"tsunami", value:<?php echo $pValue; ?>}
 	];
 
-var svg = d3.select("body").append("svg").attr("width",700).attr("height",300);
+var svg = d3.select("#body").append("svg").attr("width",400).attr("height",300);
 
 svg.append("g").attr("id","salesDonut");
 
-Donut3D.draw("salesDonut", Data(), 150, 150, 130, 100, 30, 0.4);
+Donut3D.draw("salesDonut", Data(), 200, 120, 150, 110, 30, 0.4);
+//Donut3D.draw("salesDonut", Data(), 250, 120, 130, 100, 30, 0.4);
 
 function Data(){
 	return salesData.map(function(d){ 
@@ -145,5 +142,6 @@ function Data(){
 	});
 }
 </script>
+
 
 <?php include_once "template/footer.php" ?>
