@@ -13,7 +13,7 @@
   }
 
   path {
-    fill: #0c7c1b;
+    fill: #46e11c;
     stroke: #fff;
   }
 
@@ -129,7 +129,7 @@
 
       }
 
-      d3.csv("data/station/clusterB.csv", function(data) {
+      d3.csv("data/station/sample.csv", function(data) {
         ajaxHelper(data);
       });
 
@@ -176,7 +176,7 @@
   function refresh(duration) {
     function updateQuake(data) {
       var d = {type: "Point", coordinates: [data.long, data.lat]}
-        // console.log(d);
+      //  console.log(d);
 
       var coords = [];
       clipped = circle.clip(d);
@@ -233,7 +233,6 @@
   function clip(d) {
     return path(circle.clip(d));
   }
-
 
 </script>
 <?php include_once "template/footer.php" ?>
