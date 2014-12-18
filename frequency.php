@@ -34,7 +34,7 @@ rect:hover {  fill:blue; }
 
 </style>
 <body>
-    <h2><center>แผนภาพแสดงจำนวนการเกิดแผ่นดินไหวและระดับความแรง <br>ในแต่ละเดือน</center></h2>
+    <h2><center>แผนภาพแสดงจำนวนการเกิดแผ่นดินไหวและระดับความแรง <br>ในแต่ละเดือน (ข้อมูลเฉพาะปี 2014)</center></h2>
 <div id='dashboard'>
 </div>
 <script src="asset/d3/d3.v3.min.js"></script>
