@@ -1,5 +1,5 @@
 <?php include_once "template/header.php" ?>
-<script src="asset/d3/d3.geo.js"></script>
+<script src="asset/d3/d3.v2.min.js"></script>
 <style>
 
   svg {
@@ -56,7 +56,7 @@
   .on("mousedown", mousedown);
 
 
-  d3.json("asset/d3/world-countries.json", function(error, collection) {
+  d3.json("asset/d3/world-countries.json", function(collection) {
     feature = svg.selectAll("path")
     .data(collection.features)
     .enter().append("svg:path")
@@ -66,10 +66,10 @@
     .text(function(d) { return d.properties.name; });
 
     /*Copy*/
-    var qCXNs=null;
+    var qCXNs=[];
     function processQuakes(collection) {
         quakes = svg.selectAll("quakes")
-        .data(collection)
+        .data(collection.features)
         .enter()
         .append("svg:circle")
         // .on("mouseover", function(d) {
@@ -119,7 +119,7 @@
       }
 
       function ajaxHelper(data) {
-        qCXNs = data;
+        qCXNs.features = data;
         // if (qCXNs === null) {
         //   qCXNs = data;
         // } else {
@@ -129,7 +129,7 @@
 
       }
 
-      d3.csv("data/station/clusterA.csv", function(error, data) {
+      d3.csv("data/station/clusterB.csv", function(data) {
         ajaxHelper(data);
       });
 
@@ -172,25 +172,26 @@
     }
   }
 
-  function richterColors(d) {
-    return d3.rgb(colorScale(d)).darker(0.0).toString();
-  }
 
   function refresh(duration) {
-    function updateQuake(d) {
+    function updateQuake(data) {
+      var d = {type: "Point", coordinates: [data.long, data.lat]}
+        // console.log(d);
+
       var coords = [];
       clipped = circle.clip(d);
-      if (clipped !== undefined) {
-        coords[0] = projection([clipped.long,clipped.lat])[0];
-        coords[1] = projection([clipped.long,clipped.lat])[1];
+      if (clipped !== null) {
+        coords[0] = projection(clipped.coordinates)[0];
+        coords[1] = projection(clipped.coordinates)[1];
         coords[2] = 1;
       } else {
-        coords[0] = projection([d.long,d.lat])[0];
-        coords[1] = projection([d.long,d.lat])[1];
+        coords[0] = projection(d.coordinates)[0];
+        coords[1] = projection(d.coordinates)[1];
         coords[2] = 0;
       }
       return coords;
     }
+
 
     if (duration) {
       feature.transition().duration(duration).attr("d", clip);
@@ -202,7 +203,11 @@
           return updateQuake(d)[1];
         },
         "r": function(d) {
-          return 5;
+          if (updateQuake(d)[2] === 1) {
+            return 5;
+          } else {
+            return 0;
+          }
         }
       });
     } else {
@@ -215,7 +220,11 @@
           return updateQuake(d)[1];
         },
         "r": function(d) {
-          return 5;
+          if (updateQuake(d)[2] === 1) {
+            return 5;
+          } else {
+            return 0;
+          }
         }
       });
     }
