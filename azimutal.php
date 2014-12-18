@@ -9,11 +9,11 @@
   }
 
   circle {
-    fill: #dbe4f0;
+    fill: #f70000;
   }
 
   path {
-    fill: #3e89ca;
+    fill: #0c7c1b;
     stroke: #fff;
   }
 
@@ -27,6 +27,7 @@
 <script>
 
   var feature;
+  var quakes;
 
   var projection = d3.geo.azimuthal()
   .scale(380)
@@ -34,7 +35,7 @@
   .mode("orthographic")
   .translate([640, 400]);
 
-  var circle = d3.geo.greatCircle()
+  var circle = d3.geo.circle()
   .origin(projection.origin());
 
   // TODO fix d3.geo.azimuthal to be consistent with scale
@@ -63,7 +64,78 @@
 
     feature.append("svg:title")
     .text(function(d) { return d.properties.name; });
+
+    /*Copy*/
+    var qCXNs=null;
+    function processQuakes(collection) {
+        quakes = svg.selectAll("quakes")
+        .data(collection)
+        .enter()
+        .append("svg:circle")
+        // .on("mouseover", function(d) {
+        //   // First unhighlight the rest of quakes
+        //   quakes
+        //   .attr("class", "quake");
+        //
+        //   element = d3.select(this);
+        //   element
+        //   .attr("class", "quake-selected");
+        //
+        //   var quakeDate = new Date(d.properties.time * 1000);
+        //   quakeText
+        //   .attr("href", d.properties.url)
+        //   .attr("class", "true-quake-text")
+        //   .text(d.properties.mag.toString() + "-magnitude earthquake " +
+        //   d.properties.place + " at " + quakeDate.toString());
+        //   quakeLink
+        //   .attr('href', d.properties.url)
+        //   .text("  (Link)  ");
+        //
+        //   var demoQuake = quakeSVG.selectAll("circle");
+        //
+        //   demoQuake
+        //   .attr("stroke", highlightColor)
+        //   .attr("r", richterSize(d.properties.mag))
+        //   .attr("opacity", richterOpacity(d.properties.mag))
+        //   .attr("fill", richterColors(d.properties.mag));
+        //
+        // })
+        .attr("class", "quake")
+        .attr("stroke", "#aaa")
+        .attr("stroke-width", 1)
+        .attr("fill", function(d) {
+          return "red";
+        })
+        .attr("cx", function(d) {
+          return projection([d.long,d.lat])[0];
+        })
+        .attr("cy", function(d) {
+          return projection([d.long,d.lat])[1];
+        })
+        .attr("r", function(d) {
+          return 5;
+        });
+        refresh();
+      }
+
+      function ajaxHelper(data) {
+        qCXNs = data;
+        // if (qCXNs === null) {
+        //   qCXNs = data;
+        // } else {
+        //   qCXNs.push(data);
+        // }
+        processQuakes(qCXNs);
+
+      }
+
+      d3.csv("data/station/clusterA.csv", function(error, data) {
+        ajaxHelper(data);
+      });
+
   });
+
+
 
   d3.select(window)
   .on("mousemove", mousemove)
@@ -100,8 +172,53 @@
     }
   }
 
+  function richterColors(d) {
+    return d3.rgb(colorScale(d)).darker(0.0).toString();
+  }
+
   function refresh(duration) {
-    (duration ? feature.transition().duration(duration) : feature).attr("d", clip);
+    function updateQuake(d) {
+      var coords = [];
+      clipped = circle.clip(d);
+      if (clipped !== undefined) {
+        coords[0] = projection([clipped.long,clipped.lat])[0];
+        coords[1] = projection([clipped.long,clipped.lat])[1];
+        coords[2] = 1;
+      } else {
+        coords[0] = projection([d.long,d.lat])[0];
+        coords[1] = projection([d.long,d.lat])[1];
+        coords[2] = 0;
+      }
+      return coords;
+    }
+
+    if (duration) {
+      feature.transition().duration(duration).attr("d", clip);
+      quakes.transition().duration(duration).attr({
+        "cx": function(d) {
+          return updateQuake(d)[0];
+        },
+        "cy": function(d) {
+          return updateQuake(d)[1];
+        },
+        "r": function(d) {
+          return 5;
+        }
+      });
+    } else {
+      feature.attr("d", clip);
+      quakes.attr({
+        "cx": function(d) {
+          return updateQuake(d)[0];
+        },
+        "cy": function(d) {
+          return updateQuake(d)[1];
+        },
+        "r": function(d) {
+          return 5;
+        }
+      });
+    }
   }
 
   function clip(d) {
