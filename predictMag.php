@@ -18,7 +18,7 @@
 	<p id="gap">GAP = </p>
 	<p id="lat">Latitude = </p>
 	<p id="lng">Longitude = </p>
-	<p id="mag">MAGNITUDE = </p>
+	<p id="mag">Magnitude = </p>
 </div>
 
 <script type="text/javascript">
@@ -31,11 +31,11 @@
 			lng:$('input[name^="lng"]').val()})
 			.done(function(data){
 				$('#result').css('visibility', 'visible');
-				$('#dmin').text($('#dmin').text()+$('input[name^="dmin"]').val());
-				$('#gap').text($('#gap').text()+$('input[name^="gap"]').val());
-				$('#lat').text($('#lat').text()+$('input[name^="lat"]').val());
-				$('#lng').text($('#lng').text()+$('input[name^="lng"]').val());
-				$('#mag').text($('#mag').text()+data);
+				$('#dmin').text("DMIN = "+$('input[name^="dmin"]').val());
+				$('#gap').text("GAP = "+$('input[name^="gap"]').val());
+				$('#lat').text("Latitude = "+$('input[name^="lat"]').val());
+				$('#lng').text("Longitude = "+$('input[name^="lng"]').val());
+				$('#mag').text("Magnitude = "+data);
 			})
 		return false;
 	});
