@@ -1,6 +1,5 @@
 <?php include_once "template/header.php" ?>
 
-
 <style>
 body{
     width:1060px;
@@ -38,6 +37,7 @@ rect:hover {  fill:blue; }
 
 </style>
 <body>
+    <h2><center>แผนภาพแสดงจำนวนการเกิดแผ่นดินไหวและระดับความแรง <br>ในแต่ละเดือน</center></h2>
 <div id='dashboard'>
 </div>
 <script src="asset/d3/d3.v3.min.js"></script>
