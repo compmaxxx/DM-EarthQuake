@@ -1,10 +1,7 @@
 <?php include_once "template/header.php" ?>
 
 <style>
-body{
-    width:1060px;
-    margin:50px auto;
-}
+
 path {  stroke: #fff; }
 path:hover {  opacity:0.9; }
 rect:hover {  fill:blue; }
