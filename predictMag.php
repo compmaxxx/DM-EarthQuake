@@ -4,12 +4,19 @@
 
 <form action="magRegression.php" class="form-inline" role="form">
 	<div class="form-group">
-		<input class="form-control" name="dmin" type="number" min="0" max="44.507" step="any" placeholder="Enter DMIN Value">
-		<input class="form-control" name="gap" type="number" min="10" max="356.4" step="any" placeholder="Enter GAP Value">
-		<input class="form-control" name="lat" type="number" min="-90" max="90" step="any" placeholder="Enter Latitude Value">	
-		<input class="form-control" name="lng" type="number" min="-180" max="180" step="any" placeholder="Enter Longitude Value">
+		<div class="row">
+  			<div class="col-lg-3">DMIN</div>
+  			<div class="col-lg-3">GAP</div>
+  			<div class="col-lg-3">LATITUDE</div> 	
+  			<div class="col-lg-3">LONGITUDE</div> 
+		<br>
+		<input class="form-control col-lg-3" name="dmin" type="number" min="0" max="44.507" step="any" placeholder="Enter DMIN Value">
+		<input class="form-control col-lg-3" name="gap" type="number" min="10" max="356.4" step="any" placeholder="Enter GAP Value">
+		<input class="form-control col-lg-3" name="lat" type="number" min="-90" max="90" step="any" placeholder="Enter Latitude Value">	
+		<input class="form-control col-lg-3" name="lng" type="number" min="-180" max="180" step="any" placeholder="Enter Longitude Value">
 		
-	<button name="enter" type="submit" class="btn btn-default">Enter</button>
+		<button name="enter" type="submit" class="btn btn-default">Enter</button>
+		</div>
 	</div>
 </form>
 
