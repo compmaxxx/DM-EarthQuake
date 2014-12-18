@@ -26,7 +26,9 @@
 	<p id="gap">GAP = </p>
 	<p id="lat">Latitude = </p>
 	<p id="lng">Longitude = </p>
-	<p id="mag">Magnitude = </p>
+	<h3><p>
+		<div id="mag" class="label label-warning">Magnitude = </div>
+	</p></h3>
 </div>
 
 <script type="text/javascript">
