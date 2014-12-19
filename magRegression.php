@@ -1,9 +1,10 @@
 <?php
 	$level = "";
-	$dmin=($_GET["dmin"]-0.277)/1.002;
-	$gap=($_GET["gap"]-126.661)/60.489;
-	$lat=($_GET["lat"]-42.759)/15.082;
-	$lng=($_GET["lng"]+121.011)/41.594;
+	$dmin=$_GET["dmin"];
+	$gap=$_GET["gap"];
+	$lat=$_GET["lat"];
+	$lng=$_GET["lng"];
+
 	$mag = (0.332*$dmin)+(0.006*$gap)-(0.003*$lat)+(0.006*$lng)+2.357;
 	$result = round($mag,3);
 	if ($result <= 3.9)
