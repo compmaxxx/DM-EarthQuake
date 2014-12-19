@@ -18,6 +18,21 @@
   }
 
 </style>
+<div>
+  <h3>ทวีป <span style="color:#2b32c4;text-transform:uppercase;"><?=$_GET['cont']===null? asia:$_GET['cont']?></span></h3>
+  <div class="form-group">
+    <select name="cont" class="form-control" onchange="location =  this.options[this.selectedIndex].value;">
+      <option></option>
+      <option value="visualize.php?cont=asia">Asia</option>
+      <option value="visualize.php?cont=affrica">Affrica</option>
+      <option value="visualize.php?cont=antarctica">Antarctica</option>
+      <option value="visualize.php?cont=europe">Europe</option>
+      <option value="visualize.php?cont=oceanic">Oceanic</option>
+      <option value="visualize.php?cont=north">North America</option>
+      <option value="visualize.php?cont=south">South</option>
+    </select>
+  </div>
+</div>
 
 <div id="body">
 
@@ -125,7 +140,6 @@
 
       function ajaxHelper(data) {
         qCXNs.features = data;
-        console.log(data);
         processQuakes(qCXNs);
 
       }
