@@ -25,7 +25,7 @@
 
 
 <script>
-
+  var rad=3;
   var feature;
   var quakes;
 
@@ -113,18 +113,13 @@
           return projection([d.long,d.lat])[1];
         })
         .attr("r", function(d) {
-          return 5;
+          return rad;
         });
         refresh();
       }
 
       function ajaxHelper(data) {
         qCXNs.features = data;
-        // if (qCXNs === null) {
-        //   qCXNs = data;
-        // } else {
-        //   qCXNs.push(data);
-        // }
         processQuakes(qCXNs);
 
       }
@@ -204,7 +199,7 @@
         },
         "r": function(d) {
           if (updateQuake(d)[2] === 1) {
-            return 5;
+            return rad;
           } else {
             return 0;
           }
@@ -221,7 +216,7 @@
         },
         "r": function(d) {
           if (updateQuake(d)[2] === 1) {
-            return 5;
+            return rad;
           } else {
             return 0;
           }
