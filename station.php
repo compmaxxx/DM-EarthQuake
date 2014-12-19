@@ -19,10 +19,29 @@
 
 </style>
 
+<div>
+  <p>Latitude: <span id="lat"></span></p>
+  <p>Longitude: <span id="long"></span></p>
+</div>
+
 <div id="body">
 
 </div>
 
+<script>
+function showPosition() {
+  var position = projection.invert(d3.mouse(this));
+  var long = isNaN(position[0])? 0:position[0];
+  var lat = isNaN(position[1])? 0:position[1];
+
+
+  $("#lat").text(lat);
+  $("#long").text(long);
+}
+$(document).ready(function(){
+  d3.select("svg").on("mousemove.log",showPosition);
+});
+</script>
 
 <script>
   var rad=3;
