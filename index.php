@@ -13,7 +13,7 @@
   }
 
   path {
-    fill: #46e11c;
+    fill: #3e3a3a;
     stroke: #fff;
   }
 

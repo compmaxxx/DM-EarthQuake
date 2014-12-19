@@ -9,7 +9,7 @@
   }
 
   circle {
-    fill: #f70000;
+    fill: #f9fd00;
   }
 
   path {
